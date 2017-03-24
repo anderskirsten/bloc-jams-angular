@@ -1,0 +1,24 @@
+{
+  "name": "blocjamsang",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "npm": "^3.10.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bloc/bloc-frontend-project-starter.git"
+  },
+  "author": "anderskirsten",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bloc/bloc-frontend-project-starter/issues"
+  },
+  "homepage": "https://github.com/Bloc/bloc-frontend-project-starter#readme"
+}
