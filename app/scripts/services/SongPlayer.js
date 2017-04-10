@@ -21,8 +21,7 @@
         */
         var setSong = function(song) {
             if (currentBuzzObject) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(song);
             }
 
             currentBuzzObject = new buzz.sound(song.audioURL, {
@@ -41,6 +40,16 @@
         var playSong = function(song) {
             currentBuzzObject.play();
             song.playing = true;
+        };
+
+        /**
+        * @function stopSong
+        * @desc Stops currently playing song and sets condition of `song.playing` to null
+        * @param {Object} song
+        */
+        var stopSong = function(song) {
+            currentBuzzObject.stop();
+            SongPlayer.currentSong.playing = null;
         };
 
         /**
@@ -84,13 +93,13 @@
         SongPlayer.pause = function(song) {
             song = song || SongPlayer.currentSong;
             currentBuzzObject.pause();
-            song.playing = false;
+            song.playing = null;
         };
 
         /**
         * @method SongPlayer.previous
         * @desc **PUBLIC**
-        1. uses getSongIndex function to retrieve current song's index number, then decrements the index number by one so it matches the visible song number
+        1. uses getSongIndex function to retrieve current song's index number, then decrement the index number by one so it matches the visible song number
         2. evaluates if current song is at index zero - if yes, stops playing current song & sets `SongPlayer.currentSong.playing` to null
         3. if no, sets value of `song` to the current song index from the current album, then uses `setSong` function to stop playing the currentBuzzObject & set currently playing song to null & finally uses the `playSong` function to start playing the newly selected (aka previous) song in the song list
         * @param N/A
@@ -100,14 +109,35 @@
             currentSongIndex--;
 
             if (currentSongIndex < 0) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(song);
             } else {
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
                 playSong(song);
             }
         };
+
+        /**
+        * @method SongPlayer.next
+        * @desc **PUBLIC**
+        1. uses getSongIndex function to retrieve current song's index number, then increment the index number by one so it matches the visible song number
+        2. evaluates if current song is the last song in the list - if yes, stops playing current song & sets `SongPlayer.currentSong.playing` to null
+        3. if no, sets value of `song` to the current song index from the current album, then uses `setSong` function to stop playing the currentBuzzObject & set currently playing song to null & finally uses the `playSong` function to start playing the newly selected (aka next) song in the song list
+        * @param N/A
+        */
+        SongPlayer.next = function() {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex++;
+
+            if (currentSongIndex === currentAlbum.songs.length) {
+                stopSong(song);
+            } else {
+                var song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+
 
         return SongPlayer;
     }
