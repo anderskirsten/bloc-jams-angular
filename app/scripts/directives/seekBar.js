@@ -21,6 +21,9 @@
             replace: true,
             restrict: 'E',
             scope: { },
+            scope: {
+                onChange: '&'
+            },
             link: function(scope, element, attributes) {
 
                 /**
@@ -40,6 +43,19 @@
                 * @type {Object}
                 */
                 var seekBar = $(element);
+
+                /**
+                * @method attributes.$observe
+                * @desc uses ang method `$observe` to note changes in the scope and assign a new value to the `value` & `max` variables
+                * @params newValue
+                */
+                attributes.$observe('value', function(newValue) {
+                    scope.value = newValue;
+                });
+
+                attributes.$observe('max', function(newValue) {
+                    scope.max = newValue;
+                });
 
                 /**
                 * @function percentString
@@ -79,6 +95,7 @@
                 scope.onClickSeekBar = function(event) {
                     var percent = calculatePercent(seekBar, event);
                     scope.value = percent * scope.max;
+                    notifyOnChange(scope.value);
                 };
 
                 /**
@@ -91,6 +108,7 @@
                         var percent = calculatePercent(seekBar, event);
                         scope.$apply(function() {
                             scope.value = percent * scope.max;
+                            notifyOnChange(scope.value);
                         });
                     });
 
@@ -98,6 +116,17 @@
                         $document.unbind('mousemove.thumb');
                         $document.unbind('mouseup.thumb');
                     });
+                };
+
+                /**
+                * @function notifyOnChange
+                * @desc Tests to ensure `scope.onChange` is a function, passes full function call to the `on-change` html attribute, specifies value of params `value` as the `newValue` variable, which is passed into the `SongPlayer.setCurrentTime()` function
+                * @returns number
+                */
+                var notifyOnChange = function(newValue) {
+                    if (typeof scope.onChange === 'function') {
+                        scope.onChange({value: newValue});
+                    }
                 };
             }
         };
