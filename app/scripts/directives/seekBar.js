@@ -63,6 +63,15 @@
                 };
 
                 /**
+                * @method scope.thumbStyle
+                * @desc uses `percentString` function to assign value to seek bar thumb element's width
+                * @returns number + string as width of seek bar thumb element
+                */
+                scope.thumbStyle = function() {
+                    return {left: percentString()};
+                };
+
+                /**
                 * @method scope.onClickSeekBar
                 * @desc updates seek bar value based on seek bar's width & location of user's click on seek bar
                 * @params $event
