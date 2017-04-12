@@ -70,7 +70,7 @@
                 };
 
                 /**
-                * @method scope.fillStyle
+                * @method fillStyle
                 * @desc uses `percentString` function to assign value to seek bar fill element's width
                 * @returns number + string as width of seek bar fill element
                 */
@@ -79,7 +79,7 @@
                 };
 
                 /**
-                * @method scope.thumbStyle
+                * @method thumbStyle
                 * @desc uses `percentString` function to assign value to seek bar thumb element's width
                 * @returns number + string as width of seek bar thumb element
                 */
@@ -88,7 +88,7 @@
                 };
 
                 /**
-                * @method scope.onClickSeekBar
+                * @method onClickSeekBar
                 * @desc updates seek bar value based on seek bar's width & location of user's click on seek bar
                 * @params $event
                 */
@@ -99,7 +99,7 @@
                 };
 
                 /**
-                * @method scope.trackThumb
+                * @method trackThumb
                 * @desc similar to scope.onClickSeekBar, but uses $apply to constantly update the value of scope.value as the user drags the seek bar thumb
                 * @params **internal** $event
                 */

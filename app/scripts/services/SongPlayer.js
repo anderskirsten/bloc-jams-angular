@@ -80,7 +80,13 @@
         SongPlayer.currentTime = null;
 
         /**
-        * @method SongPlayer.play
+        * @desc **PUBLIC** Current volume (scale 0-100)
+        * @type {Number}
+        */
+        SongPlayer.volume = 60;
+
+        /**
+        * @method play
         * @desc **PUBLIC** Evaluates current condition of play to start the selected song _uses `setSong` & `playSong` as helpers_
         * @param {Object} song
         */
@@ -92,13 +98,13 @@
 
              } else if (SongPlayer.currentSong === song) {
                 if (currentBuzzObject.isPaused()) {
-                    currentBuzzObject.play();
+                    playSong(song);
                 }
              }
         };
 
         /**
-        * @method SongPlayer.pause
+        * @method pause
         * @desc **PUBLIC** Evaluates current condition of play to stop the selected song & sets condition of `song.playing` to false
         * @param {Object} song
         */
@@ -109,7 +115,7 @@
         };
 
         /**
-        * @method SongPlayer.previous
+        * @method previous
         * @desc **PUBLIC**
         1. uses getSongIndex function to retrieve current song's index number, then decrement the index number by one so it matches the visible song number
         2. evaluates if current song is at index zero - if yes, stops playing current song & sets `SongPlayer.currentSong.playing` to null
@@ -130,7 +136,7 @@
         };
 
         /**
-        * @method SongPlayer.next
+        * @method next
         * @desc **PUBLIC**
         1. uses getSongIndex function to retrieve current song's index number, then increment the index number by one so it matches the visible song number
         2. evaluates if current song is the last song in the list - if yes, stops playing current song & sets `SongPlayer.currentSong.playing` to null
@@ -152,12 +158,23 @@
 
         /**
         * @method setCurrentTime
-        * @desc Set current time (in seconds) of currently playing song
+        * @desc **PUBLIC** Set current time (in seconds) of currently playing song
         * @param {Number} time
         */
         SongPlayer.setCurrentTime = function(time) {
             if (currentBuzzObject) {
                 currentBuzzObject.setTime(time);
+            }
+        };
+
+        /**
+        * @method setVolume
+        * @desc **PUBLIC** Set current volume of playing song
+        * @param {Number} volume
+        */
+        SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
             }
         };
 
