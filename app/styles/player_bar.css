@@ -39,12 +39,20 @@
 }
 
 .player-bar .main-controls .previous {
-    margin-right: 16.5%;
+    margin-right: 10.5%;
 }
 
 .player-bar .main-controls .play-pause {
-    margin-right: 15%;
+    margin-right: 10.5%;
     font-size: 1.6rem;
+}
+
+.player-bar .main-controls .next {
+    margin-right: 10.5%;
+}
+
+.player-bar .main-controls .shuffle {
+    font-size: 1.5rem;
 }
 
 .player-bar .currently-playing {

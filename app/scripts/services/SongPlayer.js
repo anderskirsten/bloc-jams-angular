@@ -14,6 +14,7 @@
         */
         var currentBuzzObject = null;
 
+
         /**
         * @function setSong
         * @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -37,6 +38,26 @@
 
             SongPlayer.currentSong = song;
         }
+
+        /**
+        * @function songOver
+        * @desc Use Buzz .bind method to keep track of currently playing song in real time, acquire and store index of currently playing song, watch for when the song ends, then play the next song on the album list
+        * @param {Object} song
+        */
+        var songOver = function(song) {
+            currentBuzzObject.bind('timeupdate', function() {
+                $rootScope.$apply(function() {
+                    SongPlayer.currentTime = currentBuzzObject.getTime();
+                });
+
+                var songIndex = getSongIndex(currentBuzzObject);
+
+                if (currentBuzzObject.isEnded()) {
+                    SongPlayer.next();
+                }
+            });
+        };
+
 
         /**
         * @function playSong
@@ -91,16 +112,23 @@
         * @param {Object} song
         */
         SongPlayer.play = function(song) {
+            if (currentBuzzObject === null) {
+                song = currentAlbum.songs[0];
+            } else {
             song = song || SongPlayer.currentSong;
-             if (SongPlayer.currentSong !== song) {
+            };
+
+            if (SongPlayer.currentSong !== song) {
                 setSong(song);
                 playSong(song);
+                songOver(song);
 
-             } else if (SongPlayer.currentSong === song) {
+            } else if (SongPlayer.currentSong === song) {
                 if (currentBuzzObject.isPaused()) {
-                    playSong(song);
-                }
-             }
+                  playSong(song);
+                  songOver(song);
+                };
+            };
         };
 
         /**
@@ -132,6 +160,7 @@
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
                 playSong(song);
+                songOver(song);
             }
         };
 
@@ -153,8 +182,10 @@
                 var song = currentAlbum.songs[currentSongIndex];
                 setSong(song);
                 playSong(song);
+                songOver(song);
             }
         };
+
 
         /**
         * @method setCurrentTime
