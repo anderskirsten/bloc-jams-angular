@@ -37,27 +37,7 @@
             });
 
             SongPlayer.currentSong = song;
-        }
-
-        /**
-        * @function songOver
-        * @desc Use Buzz .bind method to keep track of currently playing song in real time, acquire and store index of currently playing song, watch for when the song ends, then play the next song on the album list
-        * @param {Object} song
-        */
-        var songOver = function(song) {
-            currentBuzzObject.bind('timeupdate', function() {
-                $rootScope.$apply(function() {
-                    SongPlayer.currentTime = currentBuzzObject.getTime();
-                });
-
-                var songIndex = getSongIndex(currentBuzzObject);
-
-                if (currentBuzzObject.isEnded()) {
-                    SongPlayer.next();
-                }
-            });
         };
-
 
         /**
         * @function playSong
@@ -78,6 +58,77 @@
             currentBuzzObject.stop();
             SongPlayer.currentSong.playing = null;
         };
+
+        /**
+        * @function songOver
+        * @desc Use Buzz .bind method to keep track of currently playing song in real time, acquire and store index of currently playing song, watch for when the song ends, then play the next song on the album list
+        * @param {Object} song
+        */
+        var songOver = function(song) {
+            currentBuzzObject.bind('timeupdate', function() {
+                $rootScope.$apply(function() {
+                    SongPlayer.currentTime = currentBuzzObject.getTime();
+                });
+
+                var songIndex = getSongIndex(currentBuzzObject);
+
+                if (currentBuzzObject.isEnded()) {
+                    SongPlayer.next();
+                }
+            });
+        };
+
+        /**
+        * @function shuffledSongOver
+        * @desc Use Buzz .bind method to keep track of currently playing song in real time, acquire and store index of currently playing song, watch for when the song ends, then play the next song on playlist
+        * @param {Object} song
+        */
+        var shuffledSongOver = function (playlist) {
+            var songIndex = playlist.indexOf(SongPlayer.currentSong);
+            console.log(songIndex);
+
+            currentBuzzObject.bind('timeupdate', function() {
+                  $rootScope.$apply(function() {
+                    SongPlayer.currentTime = currentBuzzObject.getTime();
+                  });
+
+                  if (currentBuzzObject.isEnded()) {
+
+                    if (songIndex === playlist.length - 1) {
+                      song.playing = false;
+
+                    } else {
+                    song = playlist[songIndex + 1];
+                    setSong(song);
+                    playSong(song);
+                    shuffledSongOver(playlist);
+                    }
+                  }
+              });
+            };
+
+            /**
+            * @function shuffleSongList
+            * @desc Push all songs from currentAlbum into songArray, loop through songArray & use Math.random() to select song by index number and push into new song list array
+            * @returns [Array]
+            */
+            var shuffleSongList = function() {
+              var songArray = [];
+              var shuffledList = [];
+              for (i = 0; i < currentAlbum.songs.length; i++) {
+                songArray.push(currentAlbum.songs[i]);
+              }
+
+              while (shuffledList.length < songArray.length) {
+                var song = songArray[Math.floor(songArray.length * Math.random())];
+                if (shuffledList.includes(song)) {
+
+                } else {
+                shuffledList.push(song);
+                }
+              }
+              return shuffledList;
+            };
 
         /**
         * @function getSongIndex
@@ -186,6 +237,24 @@
             }
         };
 
+        /**
+        * @method shuffle
+        * @desc **PUBLIC** Use `shuffleSongList` function to get a new song array with a random order, check if a song is currently playing, if yes, stop it. Then, use setSong(), playSong() & shuffledSongOver() methods to progress playlist
+        * @param N/A
+        */
+        SongPlayer.shuffle = function() {
+          var shuffledList = shuffleSongList();
+
+          if (currentBuzzObject) {
+            currentBuzzObject.stop()
+          };
+
+          var song = shuffledList[0];
+
+          setSong(song);
+          playSong(song);
+          shuffledSongOver(shuffledList);
+        };
 
         /**
         * @method setCurrentTime
