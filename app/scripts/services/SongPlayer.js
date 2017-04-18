@@ -85,7 +85,6 @@
         */
         var shuffledSongOver = function (playlist) {
             var songIndex = playlist.indexOf(SongPlayer.currentSong);
-            console.log(songIndex);
 
             currentBuzzObject.bind('timeupdate', function() {
                   $rootScope.$apply(function() {
@@ -275,6 +274,23 @@
         SongPlayer.setVolume = function(volume) {
             if (currentBuzzObject) {
                 currentBuzzObject.setVolume(volume);
+            }
+        };
+
+        /**
+        * @method toggleVolume
+        * @desc **PUBLIC** Toggle volume to mute or unmute
+        * @param N/A
+        */
+        SongPlayer.toggleVolume = function() {
+            if (currentBuzzObject) {
+                currentBuzzObject.toggleMute();
+
+                if (currentBuzzObject.isMuted()) {
+                  SongPlayer.volume = 0;
+                } else {
+                  SongPlayer.volume = 60;
+                }
             }
         };
 

@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="control-group volume">
-            <span class="icon ion-volume-high"></span>
+            <span class="icon ion-volume-high" ng-click="playerBar.songPlayer.toggleVolume()" ng-hide="playerBar.SongPlayer.currentBuzzObject.isMuted()"></span>
             <seek-bar
                       value="{{ playerBar.songPlayer.volume }}"
                       max=100
