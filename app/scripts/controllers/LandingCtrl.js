@@ -4,6 +4,6 @@
     }
 
     angular
-        .module('blocJams')
+        .module('Musicology')
         .controller('LandingCtrl', LandingCtrl);
 })();

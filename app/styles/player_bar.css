@@ -65,11 +65,11 @@
 .player-bar .currently-playing .artist-name,
 .player-bar .currently-playing .artist-song-mobile {
     text-align: center;
-    font-size: 0.75rem;
+    font-size: 1rem;
     margin: 0;
     position: absolute;
     width: 100%;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .player-bar .currently-playing .song-name,
@@ -149,7 +149,6 @@
     text-align: right;
 }
 
-/* play with the volume icon controls to learn */
 .player-bar .volume .icon {
     font-size: 1.1rem;
     display: inline-block;

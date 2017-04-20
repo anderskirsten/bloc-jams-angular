@@ -133,6 +133,6 @@
     }
 
     angular
-        .module('blocJams')
+        .module('Musicology')
         .directive('seekBar', ['$document', seekBar]);
 })();

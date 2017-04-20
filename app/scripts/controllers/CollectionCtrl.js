@@ -1,9 +1,9 @@
 (function() {
     function CollectionCtrl(Fixtures) {
-        this.albums = Fixtures.getCollection(12);
+        this.albums = Fixtures.getCollection(9);
     }
 
     angular
-        .module('blocJams')
+        .module('Musicology')
         .controller('CollectionCtrl', ['Fixtures', CollectionCtrl]);
 })();

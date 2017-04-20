@@ -5,6 +5,6 @@
     }
 
     angular
-        .module('blocJams')
+        .module('Musicology')
         .controller('PlayerBarCtrl', ['Fixtures', 'SongPlayer', PlayerBarCtrl]);
 })();

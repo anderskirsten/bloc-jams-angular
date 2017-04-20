@@ -299,6 +299,6 @@
     }
 
     angular
-        .module('blocJams')
+        .module('Musicology')
         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();

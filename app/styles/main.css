@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    font-family: 'Open Sans';
+    font-family: 'Montserrat', sans-serif;
     color: white;
     min-height: 100%;
 }
@@ -25,14 +25,15 @@ body {
 .navbar .logo {
     position: relative;
     left: 2rem;
+    top: 1rem;
     cursor: pointer; /* produces the finger pointer icon when you hover over the logo */
 }
 
 .navbar .links-container {
     display: table;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1rem;
+    right: 2rem;
     height: 100px;
     color: white;
     /* #3 */
@@ -46,12 +47,12 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
     /* #4 */
+    font-family: 'Open Sans', sans-serif;
     vertical-align: middle;
-    color: white;
-    font-size: .625rem;
-    letter-spacing: 0.05rem;
+    color: rgb(170, 134, 3);
     font-weight: 700;
-    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0rem;
     /* #3 */
     text-decoration: none;
     cursor: pointer;
@@ -59,7 +60,8 @@ body {
 
 /* #5 */
 .links-container .navbar-link:hover {
-    color: rgb(233,50,117);
+    font-size: 1.25rem;
+    font-weight: 800;
 }
 
 .container {

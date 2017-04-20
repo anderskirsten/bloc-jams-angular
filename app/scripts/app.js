@@ -27,8 +27,6 @@
     }
 
     angular
-        .module('blocJams', ['ui.router'])
+        .module('Musicology', ['ui.router'])
         .config(config);
 })();
-
-
