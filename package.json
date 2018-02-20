@@ -1,17 +1,17 @@
 {
-    "name": "bloc-frontend-project-starter",
-    "version": "0.0.3",
-    "description": "Starter project for the Bloc Frontend Web Development",
+    "name": "musicology",
+    "version": "0.0.1",
+    "description": "music player application built using AngularJS and utilizing the Buzz library",
     "repository": {
         "type": "git",
-        "url": "https://github.com/bloc/bloc-frontend-project-starter"
+        "url": "https://github.com/anderskirsten/musicology"
     },
     "main": "server.js",
     "scripts": {
         "start": "node server.js"
     },
-    "author": "Bloc Inc",
-    "license": "ISC",
+    "author": "Kirsten Anderson",
+    "license": "Apache 2.0",
     "dependencies": {
         "hapi": "~7.5.0",
         "path": "^0.4.9"

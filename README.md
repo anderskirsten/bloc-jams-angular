@@ -10,6 +10,14 @@ Player functionality includes:
 
 The musicology logo is an original design.
 
+![musicology logo](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/Musicology_Logo2.png)
+
+![Home Page View](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/musicology_homepage_view.png)
+
+![Collection Page View](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/musicology_collectionpage_view.png)
+
+![Album Play Page View](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/musicology.albumplaypage_view.png)
+
 Visit the page online at https://anderskirsten.github.io/musicology/
 
 Email me at anders.kirsten@gmail.com

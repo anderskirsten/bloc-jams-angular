@@ -160,6 +160,7 @@
     display: inline-block;
     width: 5.75rem;
     vertical-align: middle;
+    margin-left: .5rem;
 }
 
 /* account for devices with smaller screens */
