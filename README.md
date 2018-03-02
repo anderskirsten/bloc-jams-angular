@@ -16,7 +16,7 @@ The musicology logo is an original design.
 
 ![Collection Page View](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/musicology_collectionpage_view.png)
 
-![Album Play Page View](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/musicology.albumplaypage_view.png)
+![Album Play Page View](https://github.com/anderskirsten/musicology/blob/master/app/assets/images/musicology_albumplaypage_view.png)
 
 Visit the page online at https://anderskirsten.github.io/musicology/
 
